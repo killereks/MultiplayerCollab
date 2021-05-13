@@ -40,5 +40,12 @@ public class PlayerMovementInterpolation : NetworkBehaviour {
     void CmdSendDataToServer(Vector3 pos) {
         mostRecentPos = pos;
         predictionTime = 0f;
+        RPCSyncPosition(pos);
+    }
+
+    [ClientRpc]
+    void RPCSyncPosition(Vector3 pos) {
+        mostRecentPos = pos;
+        predictionTime = 0f;
     }
 }
