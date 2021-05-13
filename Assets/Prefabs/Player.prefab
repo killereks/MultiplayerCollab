@@ -564,9 +564,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  objectsToDisableIfMine:
-  - {fileID: 296374708443086416}
+  objectsToDisableIfMine: []
   objectsToEnableIfMine: []
+  objectsToDisableIfNotMine:
+  - {fileID: 296374708443086416}
+  objectsToEnableIfNotMine: []
 --- !u!1 &2075920746657000703
 GameObject:
   m_ObjectHideFlags: 0
