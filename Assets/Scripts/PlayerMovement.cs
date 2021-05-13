@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
 using Mirror;
+using UnityEngine.UI;
 
 public class PlayerMovement : NetworkBehaviour {
 
@@ -32,6 +33,10 @@ public class PlayerMovement : NetworkBehaviour {
 
     Animator anim;
 
+    public SkinnedMeshRenderer characterModel;
+
+    PlayerSprintSystem playerSprintSystem;
+
     private void Start() {
         rb = GetComponent<Rigidbody>();
 
@@ -41,8 +46,12 @@ public class PlayerMovement : NetworkBehaviour {
         LockCursor(true);
         canMove = true;
 
+        playerSprintSystem = GetComponent<PlayerSprintSystem>();
+
         if (!isLocalPlayer) {
             cam.Priority = 0;
+        } else {
+            characterModel.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
         }
     }
 
@@ -101,9 +110,10 @@ public class PlayerMovement : NetworkBehaviour {
         float speed = walkingSpeed;
         if (IsRunning()) {
             speed = runningSpeed;
+            playerSprintSystem.Sprinting();
         }
 
-        anim.SetFloat("velocityY", Mathf.Lerp(anim.GetFloat("velocityY"), input.y, 10f * Time.deltaTime));
+        anim.SetFloat("velocityY", Mathf.Lerp(anim.GetFloat("velocityY"), input.y * speed / runningSpeed, 10f * Time.deltaTime));
 
         Vector3 direction = cam.transform.forward * input.y + cam.transform.right * input.x;
         direction.y = 0f;
@@ -115,7 +125,7 @@ public class PlayerMovement : NetworkBehaviour {
     }
 
     bool IsRunning() {
-        return Input.GetKey(KeyCode.LeftShift) && Input.GetAxisRaw("Vertical") > 0f;
+        return Input.GetKey(KeyCode.LeftShift) && Input.GetAxisRaw("Vertical") > 0f && playerSprintSystem.CanSprint();
     }
 
     bool IsGrounded() {
