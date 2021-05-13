@@ -50,8 +50,11 @@ public class PlayerMovement : NetworkBehaviour {
 
         if (!isLocalPlayer) {
             cam.Priority = 0;
+            rb.isKinematic = true;
         } else {
-            characterModel.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
+            LeanTween.delayedCall(2f, () => {
+                characterModel.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
+            });
         }
     }
 
@@ -114,6 +117,7 @@ public class PlayerMovement : NetworkBehaviour {
         }
 
         anim.SetFloat("velocityY", Mathf.Lerp(anim.GetFloat("velocityY"), input.y * speed / runningSpeed, 10f * Time.deltaTime));
+        anim.SetFloat("velocityX", Mathf.Lerp(anim.GetFloat("velocityX"), input.x, 10f * Time.deltaTime));
 
         Vector3 direction = cam.transform.forward * input.y + cam.transform.right * input.x;
         direction.y = 0f;
@@ -129,6 +133,6 @@ public class PlayerMovement : NetworkBehaviour {
     }
 
     bool IsGrounded() {
-        return Physics.Raycast(transform.position, -Vector3.up, collider.bounds.extents.y + 0.1f, 1);
+        return Physics.Raycast(transform.position, -Vector3.up, collider.bounds.extents.y + 0.15f, 1);
     }
 }
