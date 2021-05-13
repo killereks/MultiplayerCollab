@@ -293,14 +293,14 @@ MonoBehaviour:
   serverBatching: 0
   serverBatchInterval: 0
   offlineScene: Assets/Scenes/Offline.unity
-  onlineScene: Assets/Scenes/Game.unity
+  onlineScene: Assets/Scenes/Lobby.unity
   transport: {fileID: 682773779}
   networkAddress: localhost
   maxConnections: 64
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 2075920746391250860, guid: 95e45171925026a4baf952ab4bde34d7, type: 3}
+  playerPrefab: {fileID: 3882056150915042911, guid: bf767282b96454241b685e5df2c851e2, type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 0
   spawnPrefabs: []
@@ -750,8 +750,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Join Local Server
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 9a5f2d472fb6e9941ac51f753918fa21, type: 2}
+  m_sharedMaterial: {fileID: -1129931399507422081, guid: 9a5f2d472fb6e9941ac51f753918fa21, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1187,8 +1187,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Host Local Server
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 9a5f2d472fb6e9941ac51f753918fa21, type: 2}
+  m_sharedMaterial: {fileID: -1129931399507422081, guid: 9a5f2d472fb6e9941ac51f753918fa21, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1321,8 +1321,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Could not connect to server
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 9a5f2d472fb6e9941ac51f753918fa21, type: 2}
+  m_sharedMaterial: {fileID: -1129931399507422081, guid: 9a5f2d472fb6e9941ac51f753918fa21, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
