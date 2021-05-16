@@ -1,14 +1,11 @@
 fileFormatVersion: 2
-guid: 18ce81c3a1113c84593e0ff3f7c5758f
+guid: 8d719585b2cfcaa4fb7916e9fac4b2fd
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: Walking (1)
-  - first:
-      74: -1610863427237328480
-    second: Walking
+    second: Hanging Idle
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -38,14 +35,14 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Walking
+      name: Hanging Idle
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
-      lastFrame: 61
+      lastFrame: 282
       wrapMode: 0
       orientationOffsetY: 0
-      level: 0
+      level: 0.6
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
@@ -60,126 +57,8 @@ ModelImporter:
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves:
-      - name: IKLeftFootWeight
-        curve:
-          serializedVersion: 2
-          curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 3.056338
-            outSlope: 3.056338
-            tangentMode: 34
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0.33333334
-          - serializedVersion: 3
-            time: 0.32718894
-            value: 1
-            inSlope: 0.059965894
-            outSlope: 0.059965894
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0.33333334
-            outWeight: 0.4504848
-          - serializedVersion: 3
-            time: 0.6318037
-            value: 1
-            inSlope: 0.1281364
-            outSlope: 0.1281364
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0.34997052
-            outWeight: 0.33333334
-          - serializedVersion: 3
-            time: 0.75103796
-            value: 0.50184906
-            inSlope: -3.0968418
-            outSlope: -3.0968418
-            tangentMode: 34
-            weightedMode: 0
-            inWeight: 0.33333334
-            outWeight: 0.33333334
-          - serializedVersion: 3
-            time: 1
-            value: 0
-            inSlope: -2.0157654
-            outSlope: -2.0157654
-            tangentMode: 34
-            weightedMode: 0
-            inWeight: 0.33333334
-            outWeight: 0
-          preInfinity: 2
-          postInfinity: 2
-          rotationOrder: 4
-      - name: IKRightFootWeight
-        curve:
-          serializedVersion: 2
-          curve:
-          - serializedVersion: 3
-            time: 0
-            value: 1
-            inSlope: -3.852071
-            outSlope: -3.852071
-            tangentMode: 34
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0.33333334
-          - serializedVersion: 3
-            time: 0.2596006
-            value: 0
-            inSlope: 0.09393027
-            outSlope: 0.09393027
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0.33333334
-            outWeight: 0.31348702
-          - serializedVersion: 3
-            time: 0.6173034
-            value: 0.028332174
-            inSlope: 0.32941824
-            outSlope: 0.32941824
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0.25707868
-            outWeight: 0.33333334
-          - serializedVersion: 3
-            time: 0.8095389
-            value: 0.987464
-            inSlope: 2.5275886
-            outSlope: 2.5275886
-            tangentMode: 34
-            weightedMode: 0
-            inWeight: 0.33333334
-            outWeight: 0.33333334
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0.06581916
-            outSlope: 0.06581916
-            tangentMode: 34
-            weightedMode: 0
-            inWeight: 0.33333334
-            outWeight: 0
-          preInfinity: 2
-          postInfinity: 2
-          rotationOrder: 4
-      events:
-      - time: 0.34444445
-        functionName: PlayFootstepSound
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.837037
-        functionName: PlayFootstepSound
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
+      curves: []
+      events: []
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

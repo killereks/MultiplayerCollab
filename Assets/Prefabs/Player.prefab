@@ -349,6 +349,7 @@ GameObject:
   - component: {fileID: 6418261658297673869}
   - component: {fileID: 2604855574351494681}
   - component: {fileID: 7992413538308659335}
+  - component: {fileID: 7886673966954409441}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -381,7 +382,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2075920746391250860}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 21f91f145dacae34288e4b99b79e3f48, type: 3}
   m_Name: 
@@ -569,6 +570,116 @@ MonoBehaviour:
   objectsToDisableIfNotMine:
   - {fileID: 296374708443086416}
   objectsToEnableIfNotMine: []
+--- !u!114 &7886673966954409441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2075920746391250860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96fa94ad0bcffc343ba464a1fc235019, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  gravity: -9.81
+  maxFov: 75
+  maxSpeed: 9
+  vCam: {fileID: 2075920746657000696}
+  currentState: 0
+  walkingSpeed: 4
+  runningSpeed: 9
+  crouchMovementSpeed: 2
+  jumpHeight: 1
+  inAirMovementMultiplier: 2
+  ledgeCheckForwardOffset: 0.7
+  ledgeCheckUpOffset: 0.5
+  ledgeCheckDistance: 0.6
+  ledgeGrabLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  climbingCurveForward:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.23733573
+      outSlope: 0.23733573
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.77628285
+      value: 0.18423966
+      inSlope: 0.6131072
+      outSlope: 0.6131072
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.13506266
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.8795226
+      outSlope: 0.8795226
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.3861572
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  climbingCurveY:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.61840904
+      outSlope: 0.61840904
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.19460733
+    - serializedVersion: 3
+      time: 0.4755351
+      value: 0.41668335
+      inSlope: 1.0609039
+      outSlope: 1.0609039
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.097509794
+      outWeight: 0.14828527
+    - serializedVersion: 3
+      time: 1.0015259
+      value: 1
+      inSlope: -1.7218338
+      outSlope: -1.7218338
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.093595095
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  maxLedgeHoldTime: 2
+  wallRunningCheckDistance: 1
+  wallrunningAngle: 15
+  wallrunningAngleSmooth: 10
+  wallrunUpJumpForce: 5
+  wallrunSideJumpForce: 4
+  wallrunForwardJumpForce: 10
+  crouchHeight: 1
+  crouchRayCheckLength: 0.5
+  heightSmooth: 10
+  slideDownForce: 5000
+  slideCounterForce: 500
+  crouchCameraHeight: 0.3
+  modelMesh: {fileID: 4123713908690168828}
 --- !u!1 &2075920746657000703
 GameObject:
   m_ObjectHideFlags: 0
@@ -625,7 +736,7 @@ MonoBehaviour:
   m_Lens:
     FieldOfView: 60
     OrthographicSize: 5
-    NearClipPlane: 0.3
+    NearClipPlane: 0.2
     FarClipPlane: 1000
     Dutch: 0
     LensShift: {x: 0, y: 0}
@@ -907,6 +1018,8 @@ GameObject:
   - component: {fileID: 4143844424837909418}
   - component: {fileID: 2088578195318396883}
   - component: {fileID: 2916063835996920796}
+  - component: {fileID: 4722147019931501127}
+  - component: {fileID: 6669892834347250794}
   m_Layer: 0
   m_Name: Character_Elf
   m_TagString: Untagged
@@ -922,7 +1035,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4094321196763188996}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalPosition: {x: 0, y: -1.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4097690583509865152}
@@ -1179,6 +1292,106 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &4722147019931501127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4094321196763188996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feb6cc9c3ad229e419bbc39ec6add8d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  DistanceToGround: 0.1
+--- !u!114 &6669892834347250794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4094321196763188996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2d8418b0b9634b1892b0268dd9c2743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boneShape: 1
+  drawBones: 1
+  drawTripods: 0
+  boneSize: 1
+  tripodSize: 1
+  boneColor: {r: 0, g: 0, b: 1, a: 0.5}
+  m_Transforms:
+  - {fileID: 4097676088324338952}
+  - {fileID: 4097522235551431916}
+  - {fileID: 4097235546235227954}
+  - {fileID: 4097687285117397212}
+  - {fileID: 4097435784638345114}
+  - {fileID: 4089878340242780436}
+  - {fileID: 4090067045313801040}
+  - {fileID: 4089944307230419462}
+  - {fileID: 4097599098853195680}
+  - {fileID: 4097248972903721238}
+  - {fileID: 4097639961244984090}
+  - {fileID: 4090197047809208766}
+  - {fileID: 4090008615682997192}
+  - {fileID: 4097457566496682820}
+  - {fileID: 4090319938050248858}
+  - {fileID: 4097684982107836610}
+  - {fileID: 4090175740460629996}
+  - {fileID: 4090063125651716798}
+  - {fileID: 4097555860222344816}
+  - {fileID: 4090214839379898438}
+  - {fileID: 4089858077389082214}
+  - {fileID: 4097545925239770188}
+  - {fileID: 4089874756174183890}
+  - {fileID: 4097385707172449278}
+  - {fileID: 4097557261971643748}
+  - {fileID: 4097490767884569934}
+  - {fileID: 4097475252291594260}
+  - {fileID: 4097486457338310360}
+  - {fileID: 4090295084244100014}
+  - {fileID: 4090117894576999836}
+  - {fileID: 4097594308789100576}
+  - {fileID: 4089898491389109092}
+  - {fileID: 4090267514973003980}
+  - {fileID: 4097252570285964028}
+  - {fileID: 4097564913614167230}
+  - {fileID: 4089930695887112728}
+  - {fileID: 4097401687037159808}
+  - {fileID: 4090020247323009804}
+  - {fileID: 4097434388079821124}
+  - {fileID: 4097289772073468004}
+  - {fileID: 4090196880372535428}
+  - {fileID: 4089937857878167656}
+  - {fileID: 4097270851642418478}
+  - {fileID: 4089993210383485296}
+  - {fileID: 4097529133405266330}
+  - {fileID: 4090261470463047974}
+  - {fileID: 4097247309034562242}
+  - {fileID: 4097232743263194962}
+  - {fileID: 4090296479348712154}
+  - {fileID: 4090253067663207858}
+  - {fileID: 4090049105887215722}
+  - {fileID: 4090222153631929340}
+  - {fileID: 4090151048183908724}
+  - {fileID: 4097227364968330480}
+  - {fileID: 4089958694432166214}
+  - {fileID: 4097464369215243960}
+  - {fileID: 4089935807240406816}
+  - {fileID: 4089989259618814514}
+  - {fileID: 4097487550349966604}
+  - {fileID: 4097284124401233512}
+  - {fileID: 4089868838378907968}
+  - {fileID: 4089878030969705654}
+  - {fileID: 4090195214179174624}
+  - {fileID: 4089927812405569400}
+  - {fileID: 4097433746053243632}
 --- !u!1 &4094911479650299502
 GameObject:
   m_ObjectHideFlags: 0
