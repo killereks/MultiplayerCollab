@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using NaughtyAttributes;
+using Mirror;
 
-public class PlayerSprintSystem : MonoBehaviour {
+public class PlayerSprintSystem : NetworkBehaviour {
 
     [BoxGroup("Settings")]
     public float maxStamina; // maximum amount of stamina we can have
@@ -30,6 +31,8 @@ public class PlayerSprintSystem : MonoBehaviour {
     }
 
     private void Update() {
+        if (!isLocalPlayer) return;
+
         if (Time.time - lastSprintTime > staminaRegenDelay) {
             sprint += sprintFillRate * Time.deltaTime;
             sprintFillRate += staminaRegenAcceleration * Time.deltaTime;
