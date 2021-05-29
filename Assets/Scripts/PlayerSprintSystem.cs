@@ -40,7 +40,9 @@ public class PlayerSprintSystem : NetworkBehaviour {
             sprintBar.fillAmount = sprint / maxStamina;
         }
 
-        PostProcessing.instance.SetChromaticAberration(1f - sprint/maxStamina);
+        if (PostProcessing.instance != null) {
+            PostProcessing.instance.SetChromaticAberration(1f - sprint / maxStamina);
+        }
     }
 
     public bool CanSprint() {
