@@ -338,7 +338,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2075920746391250861}
-  - component: {fileID: 2075920746391250863}
   - component: {fileID: 2075920746391250857}
   - component: {fileID: 2075920746391250856}
   - component: {fileID: -1048799524370300755}
@@ -346,7 +345,6 @@ GameObject:
   - component: {fileID: 5830591070025447143}
   - component: {fileID: 8830532536712625851}
   - component: {fileID: 4077718387347421322}
-  - component: {fileID: 6418261658297673869}
   - component: {fileID: 2604855574351494681}
   - component: {fileID: 7992413538308659335}
   - component: {fileID: 7886673966954409441}
@@ -377,28 +375,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2075920746391250863
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2075920746391250860}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21f91f145dacae34288e4b99b79e3f48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  walkingSpeed: 3
-  runningSpeed: 6
-  gravityScale: 2
-  playerT: {fileID: 2075920746391250861}
-  cam: {fileID: 2075920746657000696}
-  cameraClamp: {x: -89, y: 89}
-  mouseSens: 2
-  characterModel: {fileID: 4123713908690168828}
 --- !u!54 &2075920746391250857
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -520,21 +496,6 @@ MonoBehaviour:
   localRotationSensitivity: 0.01
   localScaleSensitivity: 0.01
   target: {fileID: 2075920746657000697}
---- !u!114 &6418261658297673869
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2075920746391250860}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dabb771867725941ae9a89991128deb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0
-  smoothSpeed: 10
 --- !u!114 &2604855574351494681
 MonoBehaviour:
   m_ObjectHideFlags: 0

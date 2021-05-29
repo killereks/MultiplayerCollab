@@ -10,10 +10,18 @@ public class CustomNetworkManager : NetworkManager {
 
     public Transform spawnPoint;
 
+    public GameObject playerUIPrefab;
+    public Transform playerListParent;
+
     public override void OnServerAddPlayer(NetworkConnection conn) {
         GameObject newPlayer = Instantiate(playerPrefab, spawnPoint.position, Quaternion.identity);
 
         NetworkServer.AddPlayerForConnection(conn, newPlayer);
+    }
+
+    public override void OnClientConnect(NetworkConnection conn) {
+        base.OnClientConnect(conn);
+        GameObject newPlayer = Instantiate(playerUIPrefab, playerListParent);
     }
 
     public override void OnClientError(NetworkConnection conn, int errorCode) {
