@@ -12,23 +12,22 @@ public class CustomNetworkManager : NetworkManager {
 
     public List<PlayerData> activePlayers = new List<PlayerData>();
 
-    public static CustomNetworkManager instance;
+    public static CustomNetworkManager Instance;
 
     public override void Awake() {
         base.Awake();
 
-        instance = this;
+        Instance = this;
     }
 
     public override void OnServerAddPlayer(NetworkConnection conn) {
         GameObject newPlayer = Instantiate(playerPrefab, spawnPoint.position, Quaternion.identity);
         NetworkServer.AddPlayerForConnection(conn, newPlayer);
-
         Lobby.Instance.RefreshPlayersUI();
     }
 
-    public override void OnClientDisconnect(NetworkConnection conn) {
-        base.OnClientDisconnect(conn);
+    public override void OnServerDisconnect(NetworkConnection conn) {
+        base.OnServerDisconnect(conn);
 
         Lobby.Instance.RefreshPlayersUI();
     }

@@ -236,7 +236,7 @@ public class PlayerParkourMovement : NetworkBehaviour {
         Vector3 moveDirection = GetMovementVector(input);
 
         float targetSpeed = walkingSpeed;
-        if (IsRunning()) { 
+        if (IsRunning() && IsGrounded()) { 
             targetSpeed = runningSpeed;
             playerSprintSystem.Sprinting();
         }

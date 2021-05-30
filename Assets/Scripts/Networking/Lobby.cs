@@ -44,18 +44,24 @@ public class Lobby : NetworkBehaviour {
     }
 
     public void RefreshPlayersUI() {
+        List<string> playerUsernames = new List<string>();
+
+        foreach (PlayerData player in CustomNetworkManager.Instance.activePlayers) {
+            playerUsernames.Add(player.GetUsername());
+        }
+
+        RpcRefreshPlayersUI(playerUsernames);
+    }
+
+    [ClientRpc]
+    void RpcRefreshPlayersUI(List<string> usernames) {
         foreach (Transform child in playerListParent) {
             Destroy(child.gameObject);
         }
 
-        foreach (PlayerData player in CustomNetworkManager.instance.activePlayers) {
-            RpcRefreshPlayersUI(player.GetUsername());
+        foreach (string username in usernames) {
+            NewPlayer(username);
         }
-    }
-
-    [ClientRpc]
-    void RpcRefreshPlayersUI(string username) {
-        NewPlayer(username);
     }
 
     public void NewPlayer(string username) {
