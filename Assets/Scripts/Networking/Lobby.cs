@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using TMPro;
+using UnityEngine.UI;
 
 public class Lobby : NetworkBehaviour {
 
@@ -54,19 +55,27 @@ public class Lobby : NetworkBehaviour {
     }
 
     [ClientRpc]
-    void RpcRefreshPlayersUI(List<string> usernames) {
+    void RpcRefreshPlayersUI(List<string> playerUsernames) {
         foreach (Transform child in playerListParent) {
             Destroy(child.gameObject);
         }
 
-        foreach (string username in usernames) {
+        foreach (string username in playerUsernames) {
             NewPlayer(username);
         }
     }
 
     public void NewPlayer(string username) {
+        //NetworkConnection host = CustomNetworkManager.Instance.host;
+
         GameObject newPlayer = Instantiate(playerUIPrefab, playerListParent);
 
         Tools.FindDeepChild<TextMeshProUGUI>(newPlayer, "UsernameText").text = username;
+        // we are a host and we are not trying to kick ourselves
+        /*Tools.FindDeepChild<Button>(newPlayer, "KickBtn").gameObject.SetActive(host.identity == netIdentity && conn != host);
+
+        Tools.FindDeepChild<Button>(newPlayer, "KickBtn").onClick.AddListener(() => conn.Disconnect());*/
     }
 }
+
+

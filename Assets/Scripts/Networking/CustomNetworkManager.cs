@@ -14,6 +14,8 @@ public class CustomNetworkManager : NetworkManager {
 
     public static CustomNetworkManager Instance;
 
+    public NetworkConnection host;
+
     public override void Awake() {
         base.Awake();
 
@@ -24,6 +26,10 @@ public class CustomNetworkManager : NetworkManager {
         GameObject newPlayer = Instantiate(playerPrefab, spawnPoint.position, Quaternion.identity);
         NetworkServer.AddPlayerForConnection(conn, newPlayer);
         Lobby.Instance.RefreshPlayersUI();
+
+        if (host == null) {
+            host = conn;
+        }
     }
 
     public override void OnServerDisconnect(NetworkConnection conn) {
