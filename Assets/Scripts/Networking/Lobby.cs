@@ -19,6 +19,8 @@ public class Lobby : NetworkBehaviour {
     public GameObject playerUIPrefab;
     public Transform playerListParent;
 
+    public SyncDictionary<int, PlayerData> activePlayers = new SyncDictionary<int, PlayerData>();
+
     private void Awake() {
         Instance = this;
     }
@@ -46,8 +48,8 @@ public class Lobby : NetworkBehaviour {
     public void RefreshPlayersUI() {
         List<string> playerUsernames = new List<string>();
 
-        foreach (PlayerData player in CustomNetworkManager.Instance.activePlayers) {
-            playerUsernames.Add(player.GetUsername());
+        foreach (KeyValuePair<int, PlayerData> keyValuePair in activePlayers) {
+            playerUsernames.Add(keyValuePair.Value.GetUsername());
         }
 
         RpcRefreshPlayersUI(playerUsernames);
