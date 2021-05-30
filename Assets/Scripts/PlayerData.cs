@@ -15,6 +15,9 @@ public class PlayerData : NetworkBehaviour {
     [SyncVar(hook = nameof(UpdateNickname))]
     string nickname;
 
+    [SyncVar]
+    public int connection;
+
     private void Awake() {
         nickname = "Player" + Random.Range(0, 9999);
         nicknameText.text = nickname;
@@ -27,6 +30,11 @@ public class PlayerData : NetworkBehaviour {
     private void Update() {
         if (Input.GetKeyDown(KeyCode.G)) {
             CmdSetName("Player" + Random.Range(0, 9999));
+        }
+
+        if (Input.GetKeyDown(KeyCode.T) && isLocalPlayer)
+        {
+            Debug.Log(Lobby.Instance.activePlayers[connection].nickname);
         }
     }
 
@@ -48,13 +56,13 @@ public class PlayerData : NetworkBehaviour {
     public override void OnStartServer() {
         base.OnStartServer();
 
-        CustomNetworkManager.Instance.activePlayers.Add(this);
+        //CustomNetworkManager.Instance.activePlayers.Add(this);
     }
 
     public override void OnStopServer() {
         base.OnStopServer();
 
-        CustomNetworkManager.Instance.activePlayers.Remove(this);
+        //CustomNetworkManager.Instance.activePlayers.Remove(this);
     }
 
     public string GetUsername() {
