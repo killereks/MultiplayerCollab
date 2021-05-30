@@ -19,8 +19,7 @@ public class Lobby : NetworkBehaviour {
     public GameObject playerUIPrefab;
     public Transform playerListParent;
 
-    private void Awake()
-    {
+    private void Awake() {
         Instance = this;
     }
 
@@ -44,12 +43,24 @@ public class Lobby : NetworkBehaviour {
         lobbyConnectionGO.SetActive(false);
     }
 
-    //TODO actually check for authority
-    [Command(ignoreAuthority = true)]
-    public void AddNewPlayer()
-    {
-        //ClientScene.RegisterPrefab(playerUIPrefab);
-        GameObject newPlayer = NetworkIdentity.Instantiate(playerUIPrefab, playerListParent);
-        NetworkServer.Spawn(newPlayer, connectionToClient);
+    public void RefreshPlayersUI() {
+        foreach (Transform child in playerListParent) {
+            Destroy(child.gameObject);
+        }
+
+        foreach (PlayerData player in CustomNetworkManager.instance.activePlayers) {
+            RpcRefreshPlayersUI(player.GetUsername());
+        }
+    }
+
+    [ClientRpc]
+    void RpcRefreshPlayersUI(string username) {
+        NewPlayer(username);
+    }
+
+    public void NewPlayer(string username) {
+        GameObject newPlayer = Instantiate(playerUIPrefab, playerListParent);
+
+        Tools.FindDeepChild<TextMeshProUGUI>(newPlayer, "UsernameText").text = username;
     }
 }

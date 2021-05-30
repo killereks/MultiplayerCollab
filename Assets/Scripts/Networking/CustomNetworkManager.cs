@@ -10,18 +10,28 @@ public class CustomNetworkManager : NetworkManager {
 
     public Transform spawnPoint;
 
+    public List<PlayerData> activePlayers = new List<PlayerData>();
+
+    public static CustomNetworkManager instance;
+
+    public override void Awake() {
+        base.Awake();
+
+        instance = this;
+    }
+
     public override void OnServerAddPlayer(NetworkConnection conn) {
         GameObject newPlayer = Instantiate(playerPrefab, spawnPoint.position, Quaternion.identity);
-
         NetworkServer.AddPlayerForConnection(conn, newPlayer);
+
+        Lobby.Instance.RefreshPlayersUI();
     }
 
-    public override void OnClientConnect(NetworkConnection conn) {
-        
-        base.OnClientConnect(conn);
-        Lobby.Instance.AddNewPlayer();
-    }
+    public override void OnClientDisconnect(NetworkConnection conn) {
+        base.OnClientDisconnect(conn);
 
+        Lobby.Instance.RefreshPlayersUI();
+    }
 
 
     public override void OnClientError(NetworkConnection conn, int errorCode) {

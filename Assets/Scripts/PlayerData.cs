@@ -15,12 +15,13 @@ public class PlayerData : NetworkBehaviour {
     [SyncVar(hook ="UpdateNickname")]
     string nickname;
 
+    private void Awake() {
+        nickname = "Player" + Random.Range(0, 9999);
+        nicknameText.text = nickname;
+    }
+
     private void Start() {
         cam = Camera.main.transform;
-
-        nickname = "Player" + Random.Range(0, 9999);
-
-        nicknameText.text = nickname;
     }
 
     private void Update() {
@@ -40,5 +41,21 @@ public class PlayerData : NetworkBehaviour {
 
     private void LateUpdate() {
         canvas.forward = cam.forward;
+    }
+
+    public override void OnStartServer() {
+        base.OnStartServer();
+
+        CustomNetworkManager.instance.activePlayers.Add(this);
+    }
+
+    public override void OnStopServer() {
+        base.OnStopServer();
+
+        CustomNetworkManager.instance.activePlayers.Remove(this);
+    }
+
+    public string GetUsername() {
+        return nickname;
     }
 }
