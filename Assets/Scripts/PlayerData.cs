@@ -55,7 +55,7 @@ public class PlayerData : NetworkBehaviour {
             CmdToggleReady();
         }
 
-        if (Input.GetMouseButtonDown(0)) {
+        if (Input.GetMouseButtonDown(0) && isTagged && !isDead) {
             CmdAttemptTagAnotherPlayer();
         }
     }
