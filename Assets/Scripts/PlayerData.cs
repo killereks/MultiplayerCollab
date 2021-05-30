@@ -115,13 +115,8 @@ public class PlayerData : NetworkBehaviour {
     }
 
     public void DeathCallback(bool oldValue, bool newValue) {
-        print("is dead? :"+newValue);
         if (newValue) {
-            PlayerParkourMovement playerController = GetComponent<PlayerParkourMovement>();
-
-            playerController.enabled = false;
-            playerController.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            playerController.vCam.Priority = 0;
+            GetComponent<PlayerDeath>().StartAnimation();
         }
     }
 }

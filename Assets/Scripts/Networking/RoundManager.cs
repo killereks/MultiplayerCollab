@@ -12,7 +12,7 @@ public class RoundManager : NetworkBehaviour {
 
     float explodeTimer = 10f;
 
-    bool gameStarted = false;
+    bool gameRunning = false;
     
     [Server]
     public void StartGame() {
@@ -23,7 +23,7 @@ public class RoundManager : NetworkBehaviour {
             nTransform.ServerTeleport(spawnPoint.position);
         }
 
-        gameStarted = true;
+        gameRunning = true;
 
         TagRandomPlayer();
     }
@@ -35,16 +35,21 @@ public class RoundManager : NetworkBehaviour {
         // filter all alive non-tagged players
         players = players.FindAll(x => !x.isTagged && !x.isDead);
 
-        PlayerData randomPlayer = Tools.PickRandom(players.ToArray());
+        // WE HAVE A WINNER!!!
+        if (players.Count == 1) {
+            gameRunning = false;
+        } else {
+            PlayerData randomPlayer = Tools.PickRandom(players.ToArray());
 
-        taggedPlayers.Add(randomPlayer);
-        randomPlayer.isTagged = true;
+            taggedPlayers.Add(randomPlayer);
+            randomPlayer.isTagged = true;
+        }
     }
 
     [Server]
 
     private void Update() {
-        if (!gameStarted) return;
+        if (!gameRunning) return;
 
         explodeTimer -= Time.deltaTime;
 
