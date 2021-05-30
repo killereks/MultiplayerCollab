@@ -103,7 +103,7 @@ public class PlayerParkourMovement : NetworkBehaviour {
         playerSprintSystem = GetComponent<PlayerSprintSystem>();
 
         if (!isLocalPlayer) {
-            vCam.Priority = 0;
+            vCam.Priority = 10;
             rb.isKinematic = true;
         } else {
             LeanTween.delayedCall(0.5f, () => {

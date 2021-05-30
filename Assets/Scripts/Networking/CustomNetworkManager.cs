@@ -10,8 +10,6 @@ public class CustomNetworkManager : NetworkManager {
 
     public Transform spawnPoint;
 
-   
-
     public static CustomNetworkManager Instance;
 
     public NetworkConnection host;
@@ -50,7 +48,16 @@ public class CustomNetworkManager : NetworkManager {
         Lobby.Instance.RefreshPlayersUI();
     }
 
+    public override void OnClientConnect(NetworkConnection conn) {
+        base.OnClientConnect(conn);
 
+        // the game is full, auto disconnect.
+        if (numPlayers > maxConnections) {
+            conn.Disconnect();
+        }
+    }
+
+    [System.Obsolete]
     public override void OnClientError(NetworkConnection conn, int errorCode) {
         string[] errorMessages = new string[]{
             "",

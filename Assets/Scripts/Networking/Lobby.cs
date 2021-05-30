@@ -20,6 +20,8 @@ public class Lobby : NetworkBehaviour {
     public GameObject playerUIPrefab;
     public Transform playerListParent;
 
+    public RoundManager roundManager;
+
     public SyncDictionary<int, PlayerData> activePlayers = new SyncDictionary<int, PlayerData>();
 
     private void Awake() {
@@ -46,33 +48,58 @@ public class Lobby : NetworkBehaviour {
         lobbyConnectionGO.SetActive(false);
     }
 
+    [Server]
     public void RefreshPlayersUI() {
         List<string> playerUsernames = new List<string>();
+        List<bool> readyList = new List<bool>();
 
         foreach (KeyValuePair<int, PlayerData> keyValuePair in activePlayers) {
             playerUsernames.Add(keyValuePair.Value.GetUsername());
+            readyList.Add(keyValuePair.Value.isReady);
         }
 
-        RpcRefreshPlayersUI(playerUsernames);
+        if (CanStartGame(readyList)) {
+            // start game here
+            roundManager.StartGame();
+        }
+
+        RpcRefreshPlayersUI(playerUsernames, readyList);
     }
 
+    [Server]
+    public bool CanStartGame(List<bool> readyList) {
+        foreach (bool isReady in readyList) {
+            if (!isReady) return false;
+        }
+
+        CustomNetworkManager NM = CustomNetworkManager.Instance;
+
+        if (NM.numPlayers < 2) return false;
+        if (NM.numPlayers > NM.maxConnections) return false;
+
+        return true;
+    }
+
+    // two lists because serializing a class over network is more difficult
     [ClientRpc]
-    void RpcRefreshPlayersUI(List<string> playerUsernames) {
+    void RpcRefreshPlayersUI(List<string> playerUsernames, List<bool> readyList) {
         foreach (Transform child in playerListParent) {
             Destroy(child.gameObject);
         }
 
-        foreach (string username in playerUsernames) {
-            NewPlayer(username);
+        for (int i = 0; i < playerUsernames.Count; i++) {
+            NewPlayer(playerUsernames[i], readyList[i]);
         }
     }
 
-    public void NewPlayer(string username) {
+    public void NewPlayer(string username, bool isReady) {
         //NetworkConnection host = CustomNetworkManager.Instance.host;
 
         GameObject newPlayer = Instantiate(playerUIPrefab, playerListParent);
 
         Tools.FindDeepChild<TextMeshProUGUI>(newPlayer, "UsernameText").text = username;
+
+        Tools.FindDeepChild<Transform>(newPlayer, "ReadyBorder").gameObject.SetActive(isReady);
         // we are a host and we are not trying to kick ourselves
         /*Tools.FindDeepChild<Button>(newPlayer, "KickBtn").gameObject.SetActive(host.identity == netIdentity && conn != host);
 

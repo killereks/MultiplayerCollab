@@ -18,9 +18,21 @@ public class PlayerData : NetworkBehaviour {
     [SyncVar]
     public int connection;
 
+    public bool isReady;
+
+    [SyncVar(hook = nameof(TaggedCallback))]
+    public bool isTagged;
+
+    public GameObject dynamiteGO;
+
+    [SyncVar(hook = nameof(DeathCallback))]
+    public bool isDead;
+
     private void Awake() {
         nickname = "Player" + Random.Range(0, 9999);
         nicknameText.text = nickname;
+
+        dynamiteGO.SetActive(false);
     }
 
     private void Start() {
@@ -28,6 +40,8 @@ public class PlayerData : NetworkBehaviour {
     }
 
     private void Update() {
+        if (!isLocalPlayer) return;
+
         if (Input.GetKeyDown(KeyCode.G)) {
             CmdSetName("Player" + Random.Range(0, 9999));
         }
@@ -35,6 +49,14 @@ public class PlayerData : NetworkBehaviour {
         if (Input.GetKeyDown(KeyCode.T) && isLocalPlayer)
         {
             Debug.Log(Lobby.Instance.activePlayers[connection].nickname);
+        }
+
+        if (Input.GetKeyDown(KeyCode.R)) {
+            CmdToggleReady();
+        }
+
+        if (Input.GetMouseButtonDown(0)) {
+            CmdAttemptTagAnotherPlayer();
         }
     }
 
@@ -47,6 +69,25 @@ public class PlayerData : NetworkBehaviour {
 
     void UpdateNickname(string oldValue, string newValue) {
         nicknameText.text = newValue;
+    }
+
+    [Command]
+    public void CmdToggleReady() {
+        isReady = !isReady;
+
+        Lobby.Instance.RefreshPlayersUI();
+    }
+
+    [Command]
+    public void CmdAttemptTagAnotherPlayer() {
+        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 1f)) {
+            PlayerData playerData = hit.collider.GetComponent<PlayerData>();
+
+            if (playerData != null) {
+                playerData.isTagged = true;
+                isTagged = false;
+            }
+        }
     }
 
     private void LateUpdate() {
@@ -67,5 +108,20 @@ public class PlayerData : NetworkBehaviour {
 
     public string GetUsername() {
         return nickname;
+    }
+
+    public void TaggedCallback(bool oldValue, bool newValue) {
+        dynamiteGO.SetActive(newValue);
+    }
+
+    public void DeathCallback(bool oldValue, bool newValue) {
+        print("is dead? :"+newValue);
+        if (newValue) {
+            PlayerParkourMovement playerController = GetComponent<PlayerParkourMovement>();
+
+            playerController.enabled = false;
+            playerController.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            playerController.vCam.Priority = 0;
+        }
     }
 }
