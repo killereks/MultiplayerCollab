@@ -10,9 +10,6 @@ public class CustomNetworkManager : NetworkManager {
 
     public Transform spawnPoint;
 
-    public GameObject playerUIPrefab;
-    public Transform playerListParent;
-
     public override void OnServerAddPlayer(NetworkConnection conn) {
         GameObject newPlayer = Instantiate(playerPrefab, spawnPoint.position, Quaternion.identity);
 
@@ -20,9 +17,12 @@ public class CustomNetworkManager : NetworkManager {
     }
 
     public override void OnClientConnect(NetworkConnection conn) {
+        
         base.OnClientConnect(conn);
-        GameObject newPlayer = Instantiate(playerUIPrefab, playerListParent);
+        Lobby.Instance.AddNewPlayer();
     }
+
+
 
     public override void OnClientError(NetworkConnection conn, int errorCode) {
         string[] errorMessages = new string[]{

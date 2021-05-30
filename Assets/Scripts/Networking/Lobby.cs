@@ -6,6 +6,8 @@ using TMPro;
 
 public class Lobby : NetworkBehaviour {
 
+    public static Lobby Instance;
+
     public TMP_InputField serverAddressInput;
 
     public TextMeshProUGUI errorMessage;
@@ -13,6 +15,15 @@ public class Lobby : NetworkBehaviour {
     public NetworkManager networkManager;
 
     public GameObject lobbyConnectionGO;
+
+    public GameObject playerUIPrefab;
+    public Transform playerListParent;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
 
     public void JoinGame() {
         if (string.IsNullOrEmpty(serverAddressInput.text)) {
@@ -31,5 +42,14 @@ public class Lobby : NetworkBehaviour {
         networkManager.StartHost();
 
         lobbyConnectionGO.SetActive(false);
+    }
+
+    //TODO actually check for authority
+    [Command(ignoreAuthority = true)]
+    public void AddNewPlayer()
+    {
+        //ClientScene.RegisterPrefab(playerUIPrefab);
+        GameObject newPlayer = NetworkIdentity.Instantiate(playerUIPrefab, playerListParent);
+        NetworkServer.Spawn(newPlayer, connectionToClient);
     }
 }
