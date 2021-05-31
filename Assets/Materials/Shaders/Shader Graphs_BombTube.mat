@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shader Graphs_BombTube
+  m_Shader: {fileID: -6465566751694194690, guid: 5e92b42f6bcd330448d56616a80a7456, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - Vector1_21bd0306b32748f2b65fb1b4eeb1d8cf: 0
+    - Vector1_299a2c845e464811bb6044ec4fd57c84: 0
+    - Vector1_b2122b05ced54935b37827cc5e5edf99: 0
+    - _Fill: 0
+    - _FresnelPower: 0.7
+    - _WobbleX: 0
+    - _WobbleZ: 0
+    m_Colors:
+    - Color_77f4db0d5f12472aa8620952caa7110f: {r: 0.8113208, g: 0, b: 0, a: 0}
+    - Color_bb0aba840e7b4392894dd8819649fa5a: {r: 0, g: 0.4419775, b: 1, a: 0}
+    - _FresnelColor: {r: 1, g: 1, b: 1, a: 1}
+    - _LiquidColor: {r: 0.9529412, g: 0.8949462, b: 0.031372532, a: 0}
+    - _SurfaceColor: {r: 0.8018868, g: 0.68530047, b: 0.11725702, a: 0}
+  m_BuildTextureStacks: []

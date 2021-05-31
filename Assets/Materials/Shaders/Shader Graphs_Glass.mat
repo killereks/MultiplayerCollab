@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shader Graphs_Glass
+  m_Shader: {fileID: -6465566751694194690, guid: 77248c8433025eb4285d47daecdd4588, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - Vector1_1ae7cbfd3fc8471bb078d3a29c6a79d5: 1
+    - Vector1_39c83762f1024155827a8cfa5e295706: 1
+    - Vector1_3b251b72957846e28e22f3df3e43543e: 0.44
+    - Vector1_3d470e3facbe4ff4bd1302031d3abc91: 0.356
+    - Vector1_7d3cce37eaa942318177a5211b7f6940: 0.631
+    m_Colors:
+    - Color_a6410127741948129f11a7b08c8e5668: {r: 1, g: 1, b: 1, a: 0.2392157}
+  m_BuildTextureStacks: []
