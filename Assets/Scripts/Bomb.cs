@@ -26,7 +26,9 @@ public class Bomb : MonoBehaviour
     float bombProgress;
 
     //Colors
+    [ColorUsage(false, true)]
     public Color baseSafe, baseDanger;
+    [ColorUsage(false, true)]
     public Color surfaceSafe, surfaceDanger;
 
     private void Update()
