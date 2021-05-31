@@ -287,7 +287,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rend: {fileID: 2093432362}
-  MaxWobble: 0.04
+  MaxWobble: 0.02
   WobbleSpeed: 1
   Recovery: 1
   maxTime: 10
@@ -295,8 +295,6 @@ MonoBehaviour:
   baseDanger: {r: 0.328753, g: 0.9339623, b: 0.18062477, a: 0}
   surfaceSafe: {r: 0.5294118, g: 0.7647059, b: 0.7607843, a: 0}
   surfaceDanger: {r: 0.19790925, g: 0.6792453, b: 0.08009967, a: 0}
-  originalPosition: {x: -3.061, y: 2.3, z: -4.15}
-  targetPosition: {x: -6, y: 2, z: -2}
 --- !u!4 &40593485
 Transform:
   m_ObjectHideFlags: 0
@@ -5378,7 +5376,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 812336451}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.1, z: 0}
+  m_LocalPosition: {x: 0, y: -1.05, z: 0}
   m_LocalScale: {x: 1.3, y: 0.1, z: 1.3}
   m_Children: []
   m_Father: {fileID: 40593485}
@@ -7053,7 +7051,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2028344305}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.1, z: 0}
+  m_LocalPosition: {x: 0, y: 1.05, z: 0}
   m_LocalScale: {x: 1.3, y: 0.1, z: 1.3}
   m_Children: []
   m_Father: {fileID: 40593485}
