@@ -13,19 +13,29 @@ public class RoundManager : NetworkBehaviour {
     float explodeTimer = 10f;
 
     bool gameRunning = false;
+
+    public Transform lobbySpawnPoint;
+
+    float defaultRunSpeed;
+    public float taggedRunSpeed;
     
     [Server]
     public void StartGame() {
-        SyncDictionary<int, PlayerData> playersList = Lobby.Instance.activePlayers;
-        
-        foreach (KeyValuePair<int, PlayerData> player in playersList) {
-            NetworkTransform nTransform = player.Value.gameObject.GetComponent<NetworkTransform>();
-            nTransform.ServerTeleport(spawnPoint.position);
-        }
+        TeleportEveryoneTo(spawnPoint.position);
 
         gameRunning = true;
 
         TagRandomPlayer();
+    }
+
+    [Server]
+    public void TeleportEveryoneTo(Vector3 pos) {
+        SyncDictionary<int, PlayerData> playersList = Lobby.Instance.activePlayers;
+
+        foreach (KeyValuePair<int, PlayerData> player in playersList) {
+            NetworkTransform nTransform = player.Value.gameObject.GetComponent<NetworkTransform>();
+            nTransform.ServerTeleport(pos);
+        }
     }
 
     [Server]
@@ -38,6 +48,10 @@ public class RoundManager : NetworkBehaviour {
         // WE HAVE A WINNER!!!
         if (players.Count == 1) {
             gameRunning = false;
+
+            LeanTween.delayedCall(2f, () => {
+                CustomNetworkManager.Instance.ServerChangeScene("Lobby");
+            });
         } else {
             PlayerData randomPlayer = Tools.PickRandom(players.ToArray());
 

@@ -409,6 +409,10 @@ public class PlayerParkourMovement : NetworkBehaviour {
         return Mathf.Sqrt(-2f * jumpHeight * gravity);
     }
 
+    public void SetYVelocity(float yVel) {
+        yVelocity = yVel;
+    }
+
     bool IsGrounded() {
         float distToGround = collider.bounds.extents.y;
         float margin = 0.1f;
