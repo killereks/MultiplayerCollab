@@ -4,6 +4,7 @@ using UnityEngine;
 using Mirror;
 using TMPro;
 using UnityEngine.UI;
+using System.Linq;
 
 public class Lobby : NetworkBehaviour {
 
@@ -53,9 +54,9 @@ public class Lobby : NetworkBehaviour {
         List<string> playerUsernames = new List<string>();
         List<bool> readyList = new List<bool>();
 
-        foreach (KeyValuePair<int, PlayerData> keyValuePair in activePlayers) {
-            playerUsernames.Add(keyValuePair.Value.GetUsername());
-            readyList.Add(keyValuePair.Value.isReady);
+        foreach (PlayerData player in GetAllPlayers()) {
+            playerUsernames.Add(player.GetUsername());
+            readyList.Add(player.isReady);
         }
 
         if (CanStartGame(readyList)) {
@@ -104,6 +105,10 @@ public class Lobby : NetworkBehaviour {
         /*Tools.FindDeepChild<Button>(newPlayer, "KickBtn").gameObject.SetActive(host.identity == netIdentity && conn != host);
 
         Tools.FindDeepChild<Button>(newPlayer, "KickBtn").onClick.AddListener(() => conn.Disconnect());*/
+    }
+
+    public List<PlayerData> GetAllPlayers() {
+        return activePlayers.Values.ToList();
     }
 }
 

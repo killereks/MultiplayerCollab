@@ -8,17 +8,18 @@ public class RoundManager : NetworkBehaviour {
 
     public Transform spawnPoint;
 
-    public SyncList<PlayerData> taggedPlayers = new SyncList<PlayerData>();
-
+    [Range(0,300)]
+    public float baseExplodeTimer = 10f;
     float explodeTimer = 10f;
 
     bool gameRunning = false;
 
     public Transform lobbySpawnPoint;
-
-    float defaultRunSpeed;
-    public float taggedRunSpeed;
     
+    void Start() {
+        explodeTimer = baseExplodeTimer;
+    }
+
     [Server]
     public void StartGame() {
         TeleportEveryoneTo(spawnPoint.position);
@@ -49,13 +50,12 @@ public class RoundManager : NetworkBehaviour {
         if (players.Count == 1) {
             gameRunning = false;
 
-            LeanTween.delayedCall(2f, () => {
+            LeanTween.delayedCall(10f, () => {
                 CustomNetworkManager.Instance.ServerChangeScene("Lobby");
             });
         } else {
             PlayerData randomPlayer = Tools.PickRandom(players.ToArray());
 
-            taggedPlayers.Add(randomPlayer);
             randomPlayer.isTagged = true;
         }
     }
@@ -70,15 +70,17 @@ public class RoundManager : NetworkBehaviour {
         if (explodeTimer <= 0f) {
             ExplodePlayers();
             TagRandomPlayer();
-            explodeTimer = 10f;
+            explodeTimer = baseExplodeTimer;
         }
     }
 
     [Server]
     void ExplodePlayers() {
-        foreach (PlayerData playerData in taggedPlayers) {
-            playerData.isTagged = false;
-            playerData.isDead = true;
+        foreach (PlayerData player in Lobby.Instance.GetAllPlayers()) {
+            if (player.isTagged && !player.isDead) {
+                player.isTagged = false;
+                player.isDead = true;
+            }
         }
     }
 }

@@ -350,6 +350,7 @@ GameObject:
   - component: {fileID: 7886673966954409441}
   - component: {fileID: 864783132623889251}
   - component: {fileID: 38348526885957230}
+  - component: {fileID: -5713522224431779374}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -676,6 +677,7 @@ MonoBehaviour:
   isTagged: 0
   dynamiteGO: {fileID: 2607044213250422365}
   isDead: 0
+  taggedRunSpeed: 12
 --- !u!114 &38348526885957230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -693,6 +695,18 @@ MonoBehaviour:
   deathVCam: {fileID: 5619511582178518696}
   playerVCam: {fileID: 2075920746657000696}
   playerModel: {fileID: 4123713908690168828}
+--- !u!114 &-5713522224431779374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2075920746391250860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e7b782457a2e6b4e8ecf69578da1c80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2075920746657000703
 GameObject:
   m_ObjectHideFlags: 0

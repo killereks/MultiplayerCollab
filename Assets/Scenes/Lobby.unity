@@ -862,7 +862,6 @@ GameObject:
   - component: {fileID: 134754955}
   - component: {fileID: 134754954}
   - component: {fileID: 134754953}
-  - component: {fileID: 134754956}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -940,25 +939,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &134754956
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 134754952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96b149f511061407fb54895c057b7736, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wrap: {fileID: 134754953}
-  latencySpikeMultiplier: 0.5
-  latencySpikeSpeedMultiplier: 1
-  reliableLatency: 0.05
-  unreliableLoss: 0.5
-  unreliableLatency: 0
-  unreliableScramble: 0.5
 --- !u!1 &139032730
 GameObject:
   m_ObjectHideFlags: 0
@@ -4680,6 +4660,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   spawnPoint: {fileID: 1373614272}
+  baseExplodeTimer: 10
   lobbySpawnPoint: {fileID: 391690758}
 --- !u!114 &563799755
 MonoBehaviour:
@@ -4856,7 +4837,6 @@ GameObject:
   m_Component:
   - component: {fileID: 731825845}
   - component: {fileID: 731825844}
-  - component: {fileID: 731825843}
   - component: {fileID: 731825842}
   m_Layer: 0
   m_Name: WorldspaceUICam
@@ -4897,14 +4877,6 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!81 &731825843
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 731825841}
-  m_Enabled: 1
 --- !u!20 &731825844
 Camera:
   m_ObjectHideFlags: 0

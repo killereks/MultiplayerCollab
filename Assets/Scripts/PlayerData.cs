@@ -33,8 +33,11 @@ public class PlayerData : NetworkBehaviour {
 
     PlayerParkourMovement parkourController;
 
+    PlayerStun playerStun;
+
     private void Awake() {
         parkourController = GetComponent<PlayerParkourMovement>();
+        playerStun = GetComponent<PlayerStun>();
 
         defaultRunSpeed = parkourController.runningSpeed;
 
@@ -124,6 +127,7 @@ public class PlayerData : NetworkBehaviour {
 
         if (newValue) {
             parkourController.runningSpeed = taggedRunSpeed;
+            playerStun.SetStunTime(1f);
         } else {
             parkourController.runningSpeed = defaultRunSpeed;
         }
