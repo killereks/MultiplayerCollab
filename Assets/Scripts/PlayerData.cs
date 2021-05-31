@@ -28,7 +28,14 @@ public class PlayerData : NetworkBehaviour {
     [SyncVar(hook = nameof(DeathCallback))]
     public bool isDead;
 
+    float defaultRunSpeed;
+    public float taggedRunSpeed = 12f;
+
+    PlayerParkourMovement parkourController;
+
     private void Awake() {
+        parkourController = GetComponent<PlayerParkourMovement>();
+
         nickname = "Player" + Random.Range(0, 9999);
         nicknameText.text = nickname;
 
@@ -112,6 +119,12 @@ public class PlayerData : NetworkBehaviour {
 
     public void TaggedCallback(bool oldValue, bool newValue) {
         dynamiteGO.SetActive(newValue);
+
+        if (newValue) {
+            parkourController.runningSpeed = taggedRunSpeed;
+        } else {
+            parkourController.runningSpeed = defaultRunSpeed;
+        }
     }
 
     public void DeathCallback(bool oldValue, bool newValue) {

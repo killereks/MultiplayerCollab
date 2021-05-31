@@ -4680,6 +4680,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   spawnPoint: {fileID: 1373614272}
+  lobbySpawnPoint: {fileID: 391690758}
 --- !u!114 &563799755
 MonoBehaviour:
   m_ObjectHideFlags: 0
