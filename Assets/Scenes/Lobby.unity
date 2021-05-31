@@ -4662,6 +4662,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 1373614272}
   baseExplodeTimer: 10
   lobbySpawnPoint: {fileID: 391690758}
+  taggedRunSpeed: 0
 --- !u!114 &563799755
 MonoBehaviour:
   m_ObjectHideFlags: 0

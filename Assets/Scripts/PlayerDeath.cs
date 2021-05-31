@@ -12,6 +12,12 @@ public class PlayerDeath : NetworkBehaviour {
 
     public SkinnedMeshRenderer playerModel;
 
+    //ragdoll effect
+    public List<Behaviour> ragdollComponents;
+    public Collider playerBaseCollider;
+    public List<Collider> ragdollColliders;
+    public Rigidbody playerRB;
+
     private void Start() {
         networkAnimator = GetComponent<NetworkAnimator>();
     }
@@ -36,6 +42,25 @@ public class PlayerDeath : NetworkBehaviour {
         playerController.enabled = false;
         playerController.GetComponent<Rigidbody>().velocity = Vector3.zero;
 
-        networkAnimator.SetTrigger("death");
+        ToggleRagdoll(true);
+
+        //networkAnimator.SetTrigger("death");
+    }
+
+    public void ToggleRagdoll(bool toggle = true)
+    {
+        foreach (Behaviour component in ragdollComponents)
+        {
+            component.enabled = !toggle;
+        }
+
+        foreach (Collider collider in ragdollColliders)
+        {
+            collider.enabled = toggle;
+        }
+
+        playerBaseCollider.enabled = !toggle;
+        playerRB.isKinematic = !toggle;
+
     }
 }
