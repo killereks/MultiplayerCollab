@@ -36,6 +36,8 @@ public class PlayerData : NetworkBehaviour {
     private void Awake() {
         parkourController = GetComponent<PlayerParkourMovement>();
 
+        defaultRunSpeed = parkourController.runningSpeed;
+
         nickname = "Player" + Random.Range(0, 9999);
         nicknameText.text = nickname;
 
